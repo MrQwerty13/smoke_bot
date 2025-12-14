@@ -5,8 +5,11 @@ from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
+with open("tocken_file.txt", "r") as f:
+    TOKEN = f.read()
 
-bot = Bot(token="8438971936:AAEN9P1aZdcxwsYCVLv7uyLhfZb8HnCxOYw")
+
+bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
 user_data = {}
