@@ -45,6 +45,8 @@ def get_user(user_id: int):
 async def start_handler(message: Message):
     get_user(message.from_user.id)
 
+    print("@" + message.from_user.username)
+
     await message.answer(
         "Я считаю сигареты.\n"
         "Команды:\n"
