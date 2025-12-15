@@ -5,10 +5,13 @@ from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
-with open("tocken_file.txt", "r") as f:
-    TOCKEN = f.read
+file_with_tocken = "tocken_file.txt"
+file_with_users = "users.txt"
 
-bot = Bot(token=TOCKEN)
+with open(file_with_tocken, "r") as f:
+    T = f.read()
+
+bot = Bot(token=T)
 dp = Dispatcher()
 
 user_data = {}
@@ -44,11 +47,11 @@ def get_user(user_id: int):
 async def start_handler(message: Message):
     get_user(message.from_user.id)
 
-    with open("users.txt", "a") as f:
-        f.write("@" + message.from_user.username)
-    print("@"+message.from_user.username)
+    with open(file_with_users, "a") as f:
+        f.write(f"@{message.from_user.username}\n")
 
     await message.answer(
+        f"Привет, {message.from_user.first_name}!"
         "Я считаю сигареты.\n"
         "Команды:\n"
         "/limit <число> — задать дневной лимит\n",
